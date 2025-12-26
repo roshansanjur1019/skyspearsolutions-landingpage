@@ -4,6 +4,12 @@
     gap: 2.5rem;
 }
 
+.project-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 .project-card {
     overflow: hidden;
     transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
