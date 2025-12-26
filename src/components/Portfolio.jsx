@@ -21,6 +21,24 @@ const Portfolio = () => {
             category: "Automation Tool",
             image: "/assets/security-ui.png",
             desc: "Interface for an automated security compliance tool that scans and remediates cloud vulnerabilities."
+        },
+        {
+            title: "FinTrack Mobile App",
+            category: "Mobile Application",
+            image: "/assets/fintrack-app.png",
+            desc: "Personal finance tracking app for iOS and Android with real-time expense monitoring and budget insights."
+        },
+        {
+            title: "HealthSync Wellness",
+            category: "Mobile Application",
+            image: "/assets/healthsync-app.png",
+            desc: "Cross-platform health and fitness tracker with activity monitoring, workout plans, and wellness analytics."
+        },
+        {
+            title: "TaskFlow Pro",
+            category: "Mobile Application",
+            image: "/assets/taskflow-app.png",
+            desc: "Productivity and task management mobile app with project boards, calendar sync, and priority tracking."
         }
     ];
 
@@ -35,7 +53,7 @@ const Portfolio = () => {
                     className="section-header"
                 >
                     <h2 className="section-title">Featured <span className="gradient-text">Projects</span></h2>
-                    <p className="section-subtitle">Showcasing innovation in Cloud and Web</p>
+                    <p className="section-subtitle">Showcasing innovation in Cloud, Web, and Mobile</p>
                 </motion.div>
 
                 <div className="portfolio-grid">
@@ -49,10 +67,14 @@ const Portfolio = () => {
                             className="project-card glass-card"
                         >
                             <div className="project-img-wrapper">
-                                <img src={project.image} alt={project.title} className="project-img" />
-                                <div className="project-overlay">
-                                    <button className="btn btn-primary">View Project</button>
-                                </div>
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="project-img"
+                                    loading="lazy"
+                                    width="350"
+                                    height="250"
+                                />
                             </div>
                             <div className="project-info">
                                 <span className="project-category">{project.category}</span>

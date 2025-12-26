@@ -69,7 +69,7 @@ const Contact = () => {
                             <div className="info-icon"><FaMapMarkerAlt /></div>
                             <div>
                                 <h4>Location</h4>
-                                <p>Coimbatore, TamilNadu, India</p>
+                                <p>SI-32, Podanur Main Road, Chinna Radio Station Bus Stop, Podanur, Coimbatore, Tamil Nadu, 641023</p>
                             </div>
                         </div>
                     </motion.div>

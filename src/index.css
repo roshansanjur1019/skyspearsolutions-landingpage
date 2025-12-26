@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --bg-primary: #0a0a0a;
   --bg-secondary: #111111;
@@ -25,6 +29,8 @@ body {
   color: var(--text-primary);
   overflow-x: hidden;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -73,6 +79,7 @@ ul {
   backdrop-filter: blur(10px);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
+  will-change: transform, opacity;
 }
 
 .section-padding {

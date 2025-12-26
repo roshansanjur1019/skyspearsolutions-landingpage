@@ -1,0 +1,63 @@
+name: Deploy to GCP VM
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Deploy to Server via SCP
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          source: "."
+          target: "/opt/skyspear-solutions"
+
+      - name: SSH Deploy to GCP
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            set -e
+
+            # Install Docker if not present (script from reference repo)
+            if ! command -v docker >/dev/null 2>&1; then
+              echo "Installing Docker..."
+              sudo apt-get update
+              sudo apt-get install -y docker.io docker-compose
+              sudo systemctl start docker
+              sudo systemctl enable docker
+              sudo usermod -aG docker $USER
+            fi
+            
+            # Install Docker Compose if not present (fallback)
+            if ! command -v docker-compose >/dev/null 2>&1; then
+                 sudo apt-get install -y docker-compose
+            fi
+
+            cd /opt/skyspear-solutions
+            
+            # Build and deploy
+            sudo docker-compose down || true
+            sudo docker-compose up -d --build
+            sudo docker system prune -f

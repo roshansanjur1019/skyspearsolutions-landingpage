@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaCloud, FaShieldAlt, FaCode, FaServer, FaRobot, FaChartLine } from 'react-icons/fa';
+import { FaCloud, FaShieldAlt, FaCode, FaServer, FaRobot, FaChartLine, FaMobileAlt } from 'react-icons/fa';
 import './Services.css';
 
 const Services = () => {
@@ -34,6 +34,11 @@ const Services = () => {
             icon: <FaCloud />,
             title: "Landing Pages",
             desc: "Designing high-converting, visually stunning landing pages for products and services."
+        },
+        {
+            icon: <FaMobileAlt />,
+            title: "Mobile App Development",
+            desc: "Developing high-performance, cross-platform mobile applications for iOS and Android."
         }
     ];
 
