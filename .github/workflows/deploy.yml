@@ -40,19 +40,21 @@ jobs:
           script: |
             set -e
 
-            # Install Docker if not present (script from reference repo)
-            if ! command -v docker >/dev/null 2>&1; then
+            # Install Docker if not present
+            if ! command -v docker > /dev/null 2>&1; then
               echo "Installing Docker..."
               sudo apt-get update
-              sudo apt-get install -y docker.io docker-compose
+              sudo apt-get install -y docker.io
               sudo systemctl start docker
               sudo systemctl enable docker
               sudo usermod -aG docker $USER
             fi
             
-            # Install Docker Compose if not present (fallback)
-            if ! command -v docker-compose >/dev/null 2>&1; then
-                 sudo apt-get install -y docker-compose
+            # Check if docker compose (v2) is available
+            if ! docker compose version > /dev/null 2>&1; then
+              echo "Docker Compose plugin not found, installing..."
+              sudo apt-get update
+              sudo apt-get install -y docker-compose-plugin || true
             fi
 
             cd /opt/skyspear-solutions
